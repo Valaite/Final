@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="media border p-4" style="margin:5px">
+  <div class="media-body" style="overflow: auto">
+    <h2 class="article-title">{{ note.title }}</h2>
+    <p class="article-content" style="margin:5px">{{ note.content }}</p>
+    <br />
+    Category: <a class="mr-2" href="{{ url_for('categories') }}">{{ note.category.title or '' }}</a>
+    <br />
+    Date added: <small class="text-muted">{{ note.date_posted.strftime('%Y-%m-%d') }}</small>
+    {% if note.author == current_user %}
+    <div>
+      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_note', note_id=note.id) }}">Update</a>
+      <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+    </div>
+  {% endif %}
+ 
+  </div>
+  {% if note.note_picture %}
+  <img class="img-responsive" style="width:50%; height:50%" src="{{ url_for('static', filename='note_pics/' + (note.note_picture or '')) }}">
+  {% endif %}
+  
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Note?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="{{ url_for('notes') }}">Back to Notes</a>
+{% endblock content %}

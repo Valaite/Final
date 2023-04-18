@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Notes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <a class="navbar-brand" href="/"><img src="https://services.garmin.cn/appsLibraryBusinessServices_v0/rest/apps/abae37aa-df56-47e8-91fd-8b85ad85cba0/icon/935e4a06-3986-4186-8a7e-3bf429ac079e"
+        width="40"
+        height="40"
+        alt="logo"></a>
+        <ul class="navbar-nav mr-auto">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('notes')}}">My Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('new_note')}}">Add Note</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('categories')}}">My Categories</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('profile')}}">My Profile</a>
+            </li>
+            <li class="nav-item dropdown ml-auto">
+              <a class="nav-link" href="{{ url_for('logout')}}">Sign Out</a>
+            </li>
+          {% else %}
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="{{ url_for('login')}}"><span class="glyphicon glyphicon-user"></span> Login</a>
+            </li>
+            <li class="nav-item dropdown ml-auto">
+              <a class="nav-link" href="{{ url_for('register')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+            </li>
+          {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+      <!-- Bootstrap core JavaScript -->
+  </html>
