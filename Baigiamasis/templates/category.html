@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br />
+<h4>Category {{category.id}}: {{category.title}}</h4>
+
+{% if category.notes %}
+<p>Notes in this Category:</p>
+<ul>
+{% for note in category.notes %}
+
+<li><a class="card-title" href="{{ url_for('note', note_id=note.id) }}">{{ note.title }}</a></li>
+
+{% endfor %}
+</ul>
+
+<a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('delete_category', id=category['id']) }}">Delete</a>
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_category', category_id=category.id) }}">Update</a>
+<br />
+<a href="{{ url_for('categories') }}">Back to Categories</a>
+{% endif %}
+
+
+
+{% endblock %}

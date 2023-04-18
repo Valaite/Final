@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center" style="margin: 10px">
+    <img src="https://services.garmin.cn/appsLibraryBusinessServices_v0/rest/apps/abae37aa-df56-47e8-91fd-8b85ad85cba0/icon/935e4a06-3986-4186-8a7e-3bf429ac079e"
+         class="rounded mx-auto d-block"
+         alt="logo"
+         style="width:10%">
+    <h3 >Your Notes</h3>
+    <p class="fw-light">The simplest way to keep notes</p>
+  </div> 
+  <style>
+ 
+     .position-relative {
+background-image: url("https://img.freepik.com/free-vector/yellow-note-paper-with-red-pin_1284-42430.jpg?w=2000");
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+@media (max-width: 768px) {
+     .position-relative {
+       background-size: cover;
+     }
+   }
+   
+</style>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+     <div class=" col-md-5 p-lg-5 mx-auto my-5 text-center ">
+       <h1 class="display-4 font-weight-normal">New features</h1>
+       <p class="lead font-weight-normal">And an even better way to keep notes. Upgrade to our latest release, or learn more about the features in past releases.</p>
+       <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+     </div>
+</div>
+  <div class="row">
+     <div class="col-12 col-md">
+       <img src="https://services.garmin.cn/appsLibraryBusinessServices_v0/rest/apps/abae37aa-df56-47e8-91fd-8b85ad85cba0/icon/935e4a06-3986-4186-8a7e-3bf429ac079e" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"></img>
+       <small class="d-block mb-3 text-muted">© 2017-2018</small>
+     </div>
+     <div class="col-6 col-md">
+       <h5>Features</h5>
+       <ul class="list-unstyled text-small">
+         <li><a class="text-muted" href="#">Cool stuff</a></li>
+         <li><a class="text-muted" href="#">Random feature</a></li>
+         <li><a class="text-muted" href="#">Team feature</a></li>
+         <li><a class="text-muted" href="#">Stuff for developers</a></li>
+       </ul>
+     </div>
+     <div class="col-6 col-md">
+       <h5>Resources</h5>
+       <ul class="list-unstyled text-small">
+         <li><a class="text-muted" href="#">Resource</a></li>
+         <li><a class="text-muted" href="#">Resource name</a></li>
+         <li><a class="text-muted" href="#">Another resource</a></li>
+         <li><a class="text-muted" href="#">Final resource</a></li>
+       </ul>
+     </div>
+     <div class="col-6 col-md">
+       <h5>Resources</h5>
+       <ul class="list-unstyled text-small">
+         <li><a class="text-muted" href="#">Business</a></li>
+         <li><a class="text-muted" href="#">Education</a></li>
+         <li><a class="text-muted" href="#">Government</a></li>
+         <li><a class="text-muted" href="#">Gaming</a></li>
+       </ul>
+     </div>
+     <div class="col-6 col-md">
+       <h5>About</h5>
+       <ul class="list-unstyled text-small">
+         <li><a class="text-muted" href="#">Team</a></li>
+         <li><a class="text-muted" href="#">Locations</a></li>
+         <li><a class="text-muted" href="#">Privacy</a></li>
+         <li><a class="text-muted" href="#">Terms</a></li>
+       </ul>
+     </div>
+   </div>
+  {% endblock %}

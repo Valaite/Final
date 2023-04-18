@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+</br>
+    <h1>Categories:</h1>
+    <div class="card-columns">
+        {% if categories %}
+            {% for category in categories %}
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <p>Category ID: {{ category.id }}</p>
+                    Category title: <a href="{{ url_for('category', category_id=category.id)}}">{{ category.title }}</a>
+                <hr>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('delete_category', id=category['id']) }}">Delete</a>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_category', category_id=category.id) }}">Update</a>
+            </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <p>
+        <a href="{{ url_for('add_category')}}">Add Category</a>
+    </p>
+{% endblock %}
