@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .badge.badge-light.bg-success a {
+    margin-left: 0;
+    padding-left: 0;
+  }
+</style>
+<div class="container text-center">
+<div class="text-center" style="margin: 10px">
+  <form class="form-inline my-2 my-lg-0" method='GET'>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" name='q'>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+</div>
+  <br />
+  <div class="d-flex flex-wrap justify-content-center">
+    {% for note in notes %}
+      <div class="card bg-light p-2 flex-fill" style="max-width: 15rem; max-height: 15rem; overflow-y: auto; border-radius: 8px; padding: 10px; margin: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1)">
+        <div class="card-body text-center">
+          <main>
+          <h5><a class="card-title" href="{{ url_for('note', note_id=note.id) }}">{{ note.title }}</a></h5>
+          <div class="d-flex justify-content-between">
+            <small class="text-muted" style="text-align: left;">{{ note.date_posted.strftime('%Y-%m-%d') }}</small>
+            {% if note.category %}
+            <span class="badge badge-light bg-success" style="display: flex; align-items: center; justify-content: center"><a class="mr-2 text-decoration-none text-white text-center" style="margin-left: 9px; padding: 0;" href="{{ url_for('category', category_id=note.category.id) }}">{{ note.category.title or '' }}</a></span>
+            {% endif %}
+          </div>
+          <p class="card-text">{{ note.content }}</p>
+          {% if note.note_picture %}
+          <img class="img-responsive img-thumbnail" style="width:100%" src="{{ url_for('static', filename='note_pics/' + note.note_picture) }}">
+          {% endif %}
+          </main>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
